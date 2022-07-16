@@ -1,0 +1,38 @@
+cook='PESAutoLogin=ses_user%3Dtad0025%26ses_hash%3D77a4c0248e773871ed93798144a41fca'
+def g(url):
+	global cook
+	head={'Cookie' : cook}
+	return get(url=url,headers=head).text
+def p(url,data):
+	global cook
+	head={
+		'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8',
+		'Cookie' : cook
+	}
+	return post(url=url,headers=head,data=data).text
+def xem():
+	url='https://team-like.net/index.php?page=module&md=youtube'
+	dl=g(url)
+	dl=dl.split('<div class="website_block" id="')
+	for i in range(1,len(dl)):
+		id=dl[i].split('"')[0]
+		url='https://team-like.net/index.php?page=module&md=youtube&vid='+id
+		tg=int(g(url).split('var length = ')[1].split(';')[0])
+		time.sleep(tg)
+		url='https://team-like.net/system/modules/youtube/process.php'
+		data='data='+id
+		p(url,data)
+def web():
+	url='https://team-like.net/system/modules/surf/process.php'
+	data='get=1'
+	dl=p(url,data)
+	if dl.count('sid":"')==0:
+		print('    het job')
+		quit()
+	id=dl.split('sid":"')[1].split('"')[0]
+	time.sleep(30)
+	data='complete=1&sid='+id
+	p(url,data)
+while True:
+	xem()
+	web()
