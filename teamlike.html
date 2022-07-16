@@ -6,18 +6,18 @@ def au0():
 s0=threading.Thread(name='au0',target=au0)
 s0.start()
 
-cook='PESAutoLogin=ses_user%3DPhuc_ngaongooo%26ses_hash%3De8ee35ebcac18dd3f8e3cb95ff3636aa'
+cookie='PESAutoLogin=ses_user%3DPhuc_ngaongooo%26ses_hash%3De8ee35ebcac18dd3f8e3cb95ff3636aa'
 
 def g(url):
-	global cook
-	head={'Cookie' : cook}
+	global cookie
+	head={'Cookie' : cookie}
 	return get(url=url,headers=head).text
 
 def p(url,data):
-	global cook
+	global cookie
 	head={
 		'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8',
-		'Cookie' : cook
+		'Cookie' : cookie
 	}
 	return post(url=url,headers=head,data=data).text
 
