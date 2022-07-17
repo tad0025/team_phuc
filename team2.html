@@ -21,7 +21,7 @@ def xem():
 		time.sleep(tg)
 		url='https://team-like.net/system/modules/youtube/process.php'
 		data='data='+id
-		p(url,data)
+		print(p(url,data))
 def web():
 	url='https://team-like.net/system/modules/surf/process.php'
 	data='get=1'
@@ -32,7 +32,7 @@ def web():
 	id=dl.split('sid":"')[1].split('"')[0]
 	time.sleep(30)
 	data='complete=1&sid='+id
-	p(url,data)
+	print(p(url,data))
 while True:
 	xem()
 	web()
