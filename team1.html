@@ -1,14 +1,10 @@
 from requests import *
-import time,os,threading
-os.system('clear')
-
+import time
 cook='PESAutoLogin=ses_user%3Dtad0025%26ses_hash%3D77a4c0248e773871ed93798144a41fca'
-
 def g(url):
 	global cook
 	head={'Cookie' : cook}
 	return get(url=url,headers=head).text
-
 def p(url,data):
 	global cook
 	head={
@@ -16,31 +12,7 @@ def p(url,data):
 		'Cookie' : cook
 	}
 	return post(url=url,headers=head,data=data).text
-
-def cho(tg):
-	for j in range(tg,0,-1):
-		print('cho',j,'giay ',end='\r')
-		time.sleep(1)
-
-def login():
-	os.system('clear')
-	dl=g('https://team-like.net/')
-	print('\t\tTK:',dl.split('rounded" /> ')[1].split('<')[0])
-	print('\tCOIN: ',dl.split('c_coins">')[1].split(' ')[0],' XU','\tCASH: ',dl.split('$ ')[1].split('<')[0],'$',sep='')
-
-def xu():
-	return int(g('https://team-like.net/').split('c_coins">')[1].split(' ')[0])
-
-def doi():
-	coin=xu()
-	if coin>99:
-		url='https://team-like.net/?page=convert'
-		data='coins=100&submit=%E0%B8%AA%E0%B9%88%E0%B8%87%E0%B8%82%E0%B9%89%E0%B8%AD%E0%B8%A1%E0%B8%B9%E0%B8%A5'
-		p(url,data)
-	print('thanh cong',d,'=> COIN:',xu(),'XU')
-
 def xem():
-	global d
 	url='https://team-like.net/index.php?page=module&md=youtube'
 	dl=g(url)
 	dl=dl.split('<div class="website_block" id="')
@@ -48,18 +20,11 @@ def xem():
 		id=dl[i].split('"')[0]
 		url='https://team-like.net/index.php?page=module&md=youtube&vid='+id
 		tg=int(g(url).split('var length = ')[1].split(';')[0])
-		
-		cho(tg)
-		
-		d+=1
+		time.sleep(tg)
 		url='https://team-like.net/system/modules/youtube/process.php'
 		data='data='+id
-		tg=p(url,data)
-		if tg!='0': doi()
-		
+		p(url,data)
 def web():
-	global d,coin
-	d+=1
 	url='https://team-like.net/system/modules/surf/process.php'
 	data='get=1'
 	dl=p(url,data)
@@ -67,17 +32,9 @@ def web():
 		print('    het job')
 		quit()
 	id=dl.split('sid":"')[1].split('"')[0]
-	tg=int(dl.split('time":"')[1].split('"')[0])
-	
-	cho(tg)
-	
+	time.sleep(30)
 	data='complete=1&sid='+id
-	tg=p(url,data)
-	if tg!='0': doi()
-
-#  BEGIN
-login()
-d=0
+	p(url,data)
 while True:
 	xem()
-	for i in range(5): web()
+	web()
