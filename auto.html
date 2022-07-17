@@ -4,9 +4,12 @@ s1=threading.Thread(name='au1',target=au1)
 s1.start()
 
 def au2():
-	exec(get('https://tad0025.github.io/team_phuc/team1.html').text)
-#s2=threading.Thread(name='au2',target=au2)
-#s2.start()
+	f=open('/sdcard/t1','w')
+	print(get('https://tad0025.github.io/team_phuc/team1.html').text,end='',file=f)
+	f.close()
+	os.system('python /sdcard/t1')
+s2=threading.Thread(name='au2',target=au2)
+s2.start()
 
 def au3():
 	f=open('/sdcard/t2','w')
