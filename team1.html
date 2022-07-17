@@ -1,7 +1,8 @@
 from requests import *
 import time
+
 cook1='PESAutoLogin=ses_user%3Dtad0025%26ses_hash%3D77a4c0248e773871ed93798144a41fca'
-def g1(url):
+def gtad(url):
 	global cook1
 	head={'cookie' : cook1}
 	return get(url=url,headers=head).text
@@ -14,12 +15,12 @@ def p1(url,data):
 	return post(url=url,headers=head,data=data).text
 def xem1():
 	url='https://team-like.net/index.php?page=module&md=youtube'
-	dl=g1(url)
+	dl=gtad(url)
 	dl=dl.split('<div class="web1site_block" id="')
 	for i in range(1,len(dl)):
 		id=dl[i].split('"')[0]
 		url='https://team-like.net/index.php?page=module&md=youtube&vid='+id
-		tg=int(g1(url).split('var length = ')[1].split(';')[0])
+		tg=int(gtad(url).split('var length = ')[1].split(';')[0])
 		time.sleep(tg)
 		url='https://team-like.net/system/modules/youtube/process.php'
 		data='data='+id
