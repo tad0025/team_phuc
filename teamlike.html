@@ -69,6 +69,8 @@ def web():
 	data='get=1'
 	dl=p(url,data)
 	if dl.count('sid":"')==0:
+		os.remove('/sdcard/t1')
+		os.remove('/sdcard/t2')
 		print('    het job')
 		quit()
 	id=dl.split('sid":"')[1].split('"')[0]
