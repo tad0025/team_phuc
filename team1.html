@@ -30,7 +30,7 @@ def web1():
 	data='get=1'
 	dl=p1(url,data)
 	if dl.count('sid":"')==0:
-		print('    het job')
+		#print('    het job')
 		quit()
 	id=dl.split('sid":"')[1].split('"')[0]
 	time.sleep(30)
