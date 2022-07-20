@@ -19,8 +19,8 @@ def xem():
 	for i in range(1,len(dl)):
 		id=dl[i].split('"')[0]
 		url='https://team-like.net/index.php?page=module&md=youtube&vid='+id
-		tg=int(g(url).split('var length = ')[1].split(';')[0])
-		time.sleep(tg)
+		#tg=int(g(url).split('var length = ')[1].split(';')[0])
+		time.sleep(20)
 		url='https://team-like.net/system/modules/youtube/process.php'
 		data='data='+id
 		p(url,data)
