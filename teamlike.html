@@ -49,6 +49,7 @@ def xem():
 	url='https://team-like.net/index.php?page=module&md=youtube'
 	dl=g(url)
 	dl=dl.split('<div class="website_block" id="')
+	if len(dl)==1: return False
 	for i in range(1,len(dl)):
 		id=dl[i].split('"')[0]
 		url='https://team-like.net/index.php?page=module&md=youtube&vid='+id
@@ -61,7 +62,8 @@ def xem():
 		data='data='+id
 		tg=p(url,data)
 		if tg!='0': doi()
-		
+	return True
+
 def web():
 	global d,coin
 	d+=1
@@ -82,9 +84,6 @@ def web():
 
 #  BEGIN
 login()
-#os.remove('/sdcard/t1')
-#os.remove('/sdcard/t2')
-d=0
-while True:
-	xem()
-	for i in range(5): web()
+d=0;kt=True
+while kt: kt=xem()
+while True: web()
