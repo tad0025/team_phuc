@@ -1,43 +1,43 @@
 from requests import *
 import time
 
-cook1='PESAutoLogin=ses_user%3Dtad0025%26ses_hash%3D77a4c0248e773871ed93798144a41fca'
-def gtad(url):
-	global cook1
-	head={'cookie' : cook1}
+cook='PESAutoLogin=ses_user%3Dtad0025%26ses_hash%3D77a4c0248e773871ed93798144a41fca'
+def g(url):
+	global cook
+	head={'cookie' : cook}
 	return get(url=url,headers=head).text
-def p1(url,data):
-	global cook1
+def p(url,data):
+	global cook
 	head={
 		'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8',
-		'cookie' : cook1
+		'cookie' : cook
 	}
 	return post(url=url,headers=head,data=data).text
-def xem1():
+def xem():
 	url='https://team-like.net/index.php?page=module&md=youtube'
-	dl=gtad(url)
-	dl=dl.split('<div class="web1site_block" id="')
+	dl=g(url)
+	dl=dl.split('<div class="website_block" id="')
 	if len(dl)==1: return False
 	for i in range(1,len(dl)):
 		id=dl[i].split('"')[0]
 		url='https://team-like.net/index.php?page=module&md=youtube&vid='+id
-		#tg=int(gtad(url).split('var length = ')[1].split(';')[0])
+		#tg=int(g(url).split('var length = ')[1].split(';')[0])
 		time.sleep(20)
 		url='https://team-like.net/system/modules/youtube/process.php'
 		data='data='+id
-		p1(url,data)
+		p(url,data)
 	return True
-def web1():
+def web():
 	url='https://team-like.net/system/modules/surf/process.php'
 	data='get=1'
-	dl=p1(url,data)
+	dl=p(url,data)
 	if dl.count('sid":"')==0:
 		#print('    het job')
 		quit()
 	id=dl.split('sid":"')[1].split('"')[0]
 	time.sleep(30)
 	data='complete=1&sid='+id
-	p1(url,data)
+	p(url,data)
 kt=True
-while kt: kt=xem1()
-while True: web1()
+while kt: kt=xem()
+while True: web()
